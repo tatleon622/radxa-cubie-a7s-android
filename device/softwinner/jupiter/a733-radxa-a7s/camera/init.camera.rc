@@ -1,0 +1,9 @@
+on early-boot
+### csi module
+    insmod /vendor/lib/modules/vin_io.ko
+    insmod /vendor/lib/modules/imx386_mipi.ko
+    insmod /vendor/lib/modules/imx386_2lane_mipi.ko
+    insmod /vendor/lib/modules/rk628f.ko
+    insmod /vendor/lib/modules/lt7911d_mipi.ko
+    insmod /vendor/lib/modules/imx219.ko
+    insmod /vendor/lib/modules/vin_v4l2.ko

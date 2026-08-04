@@ -1,0 +1,7 @@
+on property:sys.boot_completed=1
+    #inmod tp module
+    insmod /vendor/lib/modules/init-input.ko
+    insmod /vendor/lib/modules/gt9xx.ko
+    insmod /vendor/lib/modules/hall_sensor.ko
+    insmod /vendor/lib/modules/gt9xx_secondary.ko
+

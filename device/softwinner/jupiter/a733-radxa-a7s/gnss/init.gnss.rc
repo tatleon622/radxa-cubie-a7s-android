@@ -1,0 +1,4 @@
+on early-boot
+    chmod 0777 /dev/ttyAS4
+    chown gps system /dev/ttyAS4
+    write /sys/devices/virtual/misc/sunxi-rfkill/gnss/state 1

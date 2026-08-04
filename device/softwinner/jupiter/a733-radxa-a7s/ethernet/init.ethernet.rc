@@ -1,0 +1,10 @@
+on boot
+	# insmod phy module
+	insmod /vendor/lib/modules/realtek.ko
+	# insmod gmac-210 module
+	insmod /vendor/lib/modules/pcs_xpcs.ko
+	insmod /vendor/lib/modules/pps_core.ko
+	insmod /vendor/lib/modules/ptp.ko
+	insmod /vendor/lib/modules/stmmac.ko
+	insmod /vendor/lib/modules/stmmac-platform.ko
+	insmod /vendor/lib/modules/sunxi-stmmac.ko

@@ -1,0 +1,169 @@
+/dts-v1/;
+/plugin/;
+/ {
+  /* As DTS design, these properties only for loader, won't overlay */
+  compatible = "board_manufacturer,board_model";
+
+  /* These properties are examples */
+  board_id = <0x00000002>;
+  board_rev = <0x00000000>;
+  another_hw_information = "some_data";
+  soc_id = <0x68000000>;
+
+};
+
+&soc {
+	dtbo_version = <0x00000001>;
+	dtbo{
+		compatible = "allwinner,sunxi-dtbo";
+		dtbo_type = <2>;
+	};
+};
+&twi2_pins_default {
+	-bias-pull-up;
+};
+&pio {
+	i2s2_pins_e: i2s2@4 {
+		function = "i2s2_din1";
+		-bias-disable;
+		bias-pull-down;
+	};
+
+	i2s2_pins_f: i2s2@5 {
+		pins = "PH3", "PH4", "PH5";
+	};
+};
+
+
+
+&sensor0 {
+	device_type = "sensor0";
+	sensor0_mname = "lt7911d_mipi";
+	sensor0_twi_cci_id = <2>;
+	sensor0_twi_addr = <0x56>;
+	sensor0_mclk_id = <>;
+	sensor0_pos = "rear";
+	sensor0_isp_used = <0>;
+	sensor0_fmt = <0>;
+	sensor0_stby_mode = <0>;
+	sensor0_vflip = <0>;
+	sensor0_hflip = <0>;
+	sensor0_cameravdd-supply = <>;
+	sensor0_cameravdd_vol = <>;
+	sensor0_iovdd-supply = <>;
+	sensor0_iovdd_vol = <>;
+	sensor0_avdd-supply = <>;
+	sensor0_avdd_vol = <>;
+	sensor0_dvdd-supply = <>;
+	sensor0_dvdd_vol = <>;
+	sensor0_power_en = <>;
+	sensor0_reset = <>;
+	sensor0_pwdn = <>;
+	status = "okay";
+};
+
+&vinc00 {
+	vinc0_csi_sel = <0>;
+	vinc0_mipi_sel = <0>;
+	vinc0_isp_sel = <4>;
+	vinc0_isp_tx_ch = <0>;
+	vinc0_tdm_rx_sel = <0>;
+	vinc0_rear_sensor_sel = <0>;
+	vinc0_front_sensor_sel = <0>;
+	vinc0_sensor_list = <0>;
+	device_id = <0>;
+	work_mode = <0x0>;
+	status = "okay";
+	sensor_detect@2108200 {
+		hotplug_gpios = <&pio 7 6 1>;	/* GPIO5 <&pio PH 6 GPIO_ACTIVE_LOW> */
+		power_gpios = <&pio 10 16 1>;	/* 5V-EN <&pio PK 16 GPIO_ACTIVE_LOW> */
+		reset_gpios = <&pio 4 8 1>;	/* <&pio PE 8 GPIO_ACTIVE_LOW> */
+	};
+};
+&isp10 {
+	status = "okay";
+};
+
+&vinc10 {
+	vinc4_csi_sel = <0>;
+	vinc4_mipi_sel = <0>;
+	vinc4_isp_sel = <4>;
+	vinc4_isp_tx_ch = <0>;
+	vinc4_tdm_rx_sel = <0>;
+	vinc4_rear_sensor_sel = <0>;
+	vinc4_front_sensor_sel = <0>;
+	vinc4_sensor_list = <0>;
+	device_id = <4>;
+	work_mode = <0x0>;
+	status = "okay";
+};
+&i2s2_plat {
+	rx-pin		= <1>;
+	rxfifo-pinmap	= <1 1>;
+	rxfifo-chmap	= <0 1>;
+	pinctrl-used;
+	pinctrl-names= "default","sleep";
+	pinctrl-0	= <&i2s2_pins_b &i2s2_pins_c &i2s2_pins_e>;
+	pinctrl-1	= <&i2s2_pins_f>;
+	tx-hub-en;
+	rx-sync-en;
+	status		= "okay";
+};
+
+&i2s2_mach {
+	soundcard-mach,frame-inversion;
+	-soundcard-mach,bitclock-inversion;
+	status		= "okay";
+	i2s2_cpu: soundcard-mach,cpu {
+		/* note: pll freq = 24.576M or 22.5792M * pll-fs */
+		/* note:
+		 * mclk freq = mclk-fs * 12.288M or 11.2896M	(when mclk-fp ture)
+		 * mclk freq = mclk-fs * pcm rate		(when mclk-fp false)
+		 */
+		/delete-property/ soundcard-mach,mclk-fp;
+		soundcard-mach,mclk-fs	= <0>;
+	};
+};
+
+
+/* DP OUT */
+&i2s3_plat {
+	tdm-num		= <3>;
+	tx-pin          = <0 1 2 3>;
+	-tx-pin0-map0;
+	-tx-pin0-map1;
+	-tx-pin1-map0;
+	-tx-pin1-map1;
+	-tx-pin2-map0;
+	-tx-pin2-map1;
+	-tx-pin3-map0;
+	-tx-pin3-map1;
+	-dai-type;
+
+	tx-pin0-chmap   = <0 1>;
+	tx-pin1-chmap   = <0 1>;
+	tx-pin2-chmap   = <0 1>;
+	tx-pin3-chmap   = <0 1>;
+	rx-pin		= <0>;
+
+	tx-hub-en;
+	rx-sync-en;
+	/* av:  */
+	/* av not need dai-type */
+	status		= "okay";
+};
+
+&i2s3_mach {
+	i2s3_cpu: soundcard-mach,cpu {
+		soundcard-mach,pll-fs	= <4>;
+		soundcard-mach,mclk-fs	= <512>;
+	};
+	i2s3_codec: soundcard-mach,codec {
+		/* av: */
+		sound-dai               = <&edp0>;
+	};
+};
+
+&gmac0 {
+	status = "disabled";
+};

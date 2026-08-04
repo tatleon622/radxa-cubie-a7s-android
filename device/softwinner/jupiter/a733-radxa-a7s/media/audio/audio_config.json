@@ -1,0 +1,309 @@
+{
+  "audio_device_collections": [
+    {
+      "snd_name": "audiocodec",
+      "audio_type": "sink",
+      "device_type": "AUDIO_INVALID",
+      "audio_devices": [
+        "AUDIO_DEVICE_OUT_SPEAKER",
+        "AUDIO_DEVICE_OUT_WIRED_HEADSET",
+        "AUDIO_DEVICE_OUT_WIRED_HEADPHONE"
+      ],
+      "pcm_config": {
+        "channels": 2,
+        "rate": 48000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 2720,
+        "period_count": 2
+      }
+    },
+    {
+      "snd_name": "audiocodec",
+      "audio_type": "source",
+      "device_type": "AUDIO_INVALID",
+      "audio_devices": [
+        "AUDIO_DEVICE_IN_BUILTIN_MIC",
+        "AUDIO_DEVICE_IN_WIRED_HEADSET"
+      ],
+      "pcm_config": {
+        "channels": 2,
+        "rate": 48000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 1024,
+        "period_count": 2
+      }
+    },
+
+    {
+      "snd_name": "sndhdmi",
+      "audio_type": "sink",
+      "device_type": "AUDIO_HDMI",
+      "audio_devices": [
+        "AUDIO_DEVICE_OUT_AUX_DIGITAL"
+      ],
+      "pcm_config": {
+        "channels": 2,
+        "rate": 48000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 2720,
+        "period_count": 2
+      }
+    },
+    {
+      "snd_name": "sndhdmi",
+      "audio_type": "source",
+      "device_type": "AUDIO_INVALID",
+      "audio_devices": [
+        "AUDIO_DEVICE_IN_AUX_DIGITAL"
+      ],
+      "pcm_config": {
+        "channels": 2,
+        "rate": 48000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 1024,
+        "period_count": 2
+      }
+    },
+
+    {
+      "snd_name": "sndowa",
+      "audio_type": "sink",
+      "device_type": "AUDIO_OWA",
+      "audio_devices": [
+        "AUDIO_DEVICE_OUT_SPDIF"
+      ],
+      "pcm_config": {
+        "channels": 2,
+        "rate": 48000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 2720,
+        "period_count": 2
+      }
+    },
+    {
+      "snd_name": "sndowa",
+      "audio_type": "source",
+      "device_type": "AUDIO_INVALID",
+      "audio_devices": [
+        "AUDIO_DEVICE_IN_SPDIF"
+      ],
+      "pcm_config": {
+        "channels": 2,
+        "rate": 48000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 1024,
+        "period_count": 2
+      }
+    },
+
+    {
+      "snd_name": "sndi2s0",
+      "audio_type": "sink",
+      "device_type": "AUDIO_I2S0",
+      "audio_devices": [
+        "AUDIO_DEVICE_OUT_SPEAKER",
+        "AUDIO_DEVICE_OUT_WIRED_HEADSET",
+        "AUDIO_DEVICE_OUT_WIRED_HEADPHONE"
+      ],
+      "pcm_config": {
+        "channels": 2,
+        "rate": 48000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 2720,
+        "period_count": 2
+      },
+      "telephony_config": {
+        "type": "TELE_CFG_TX_SINK",
+        "channels": 2,
+        "rate": 8000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 320,
+        "period_count": 4
+      }
+    },
+    {
+      "snd_name": "sndi2s0",
+      "audio_type": "source",
+      "device_type": "AUDIO_I2S0",
+      "audio_devices": [
+        "AUDIO_DEVICE_IN_BUILTIN_MIC",
+        "AUDIO_DEVICE_IN_WIRED_HEADSET"
+      ],
+      "pcm_config": {
+        "channels": 2,
+        "rate": 48000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 1024,
+        "period_count": 2
+      },
+      "telephony_config": {
+        "type": "TELE_CFG_TX_SRC",
+        "channels": 2,
+        "rate": 8000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 320,
+        "period_count": 4
+      }
+    },
+
+    {
+      "snd_name": "sndi2s1",
+      "audio_type": "sink",
+      "device_type": "AUDIO_BTSCO",
+      "audio_devices": [
+        "AUDIO_DEVICE_OUT_BLUETOOTH_SCO",
+        "AUDIO_DEVICE_OUT_BLUETOOTH_SCO_HEADSET",
+        "AUDIO_DEVICE_OUT_BLUETOOTH_SCO_CARKIT"
+      ],
+      "pcm_config": {
+        "channels": 1,
+        "rate": 16000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 960,
+        "period_count": 4
+      }
+    },
+    {
+      "snd_name": "sndi2s1",
+      "audio_type": "source",
+      "device_type": "AUDIO_BTSCO",
+      "audio_devices": [
+        "AUDIO_DEVICE_IN_BLUETOOTH_SCO_HEADSET"
+      ],
+      "pcm_config": {
+        "channels": 1,
+        "rate": 16000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 960,
+        "period_count": 4
+      }
+    },
+
+    {
+      "snd_name": "sndi2s2",
+      "audio_type": "sink",
+      "device_type": "AUDIO_I2S2",
+      "audio_devices": [
+        "AUDIO_DEVICE_NONE"
+      ],
+      "pcm_config": {
+        "channels": 2,
+        "rate": 48000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 2720,
+        "period_count": 2
+      }
+    },
+    {
+      "snd_name": "sndi2s2",
+      "audio_type": "source",
+      "device_type": "AUDIO_HDMIIN",
+      "audio_devices": [
+        "AUDIO_DEVICE_IN_HDMI"
+      ],
+      "pcm_config": {
+        "channels": 2,
+        "rate": 48000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 1024,
+        "period_count": 2
+      }
+    },
+
+    {
+      "snd_name": "sndi2s3",
+      "audio_type": "sink",
+      "device_type": "AUDIO_I2S3",
+      "audio_devices": [
+        "AUDIO_DEVICE_NONE"
+      ],
+      "pcm_config": {
+        "channels": 2,
+        "rate": 48000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 2720,
+        "period_count": 2
+      }
+    },
+    {
+      "snd_name": "sndi2s3",
+      "audio_type": "source",
+      "device_type": "AUDIO_I2S3",
+      "audio_devices": [
+        "AUDIO_DEVICE_NONE"
+      ],
+      "pcm_config": {
+        "channels": 2,
+        "rate": 48000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 1024,
+        "period_count": 2
+      }
+    },
+
+    {
+      "snd_name": "sndi2s4",
+      "audio_type": "sink",
+      "device_type": "AUDIO_INVALID",
+      "audio_devices": [
+        "AUDIO_DEVICE_NONE"
+      ],
+      "pcm_config": {
+        "channels": 2,
+        "rate": 48000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 2720,
+        "period_count": 2
+      }
+    },
+    {
+      "snd_name": "sndi2s4",
+      "audio_type": "source",
+      "device_type": "AUDIO_I2S4",
+      "audio_devices": [
+        "AUDIO_DEVICE_IN_ECHO_REFERENCE"
+      ],
+      "pcm_config": {
+        "channels": 2,
+        "rate": 48000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 1024,
+        "period_count": 2
+      }
+    },
+
+    {
+      "snd_name": "VoHCILoopback",
+      "audio_type": "sink",
+      "device_type": "AUDIO_INVALID",
+      "audio_devices": [
+        "AUDIO_DEVICE_OUT_BLUETOOTH_SCO",
+        "AUDIO_DEVICE_OUT_BLUETOOTH_SCO_HEADSET",
+        "AUDIO_DEVICE_OUT_BLUETOOTH_SCO_CARKIT"
+      ],
+      "pcm_config": {
+        "channels": 1,
+        "rate": 16000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 960,
+        "period_count": 4
+      }
+    },
+    {
+      "snd_name": "VoHCILoopback",
+      "audio_type": "source",
+      "device_type": "AUDIO_INVALID",
+      "audio_devices": [
+        "AUDIO_DEVICE_IN_BLUETOOTH_SCO_HEADSET"
+      ],
+      "pcm_config": {
+        "channels": 1,
+        "rate": 16000,
+        "format": "PCM_FORMAT_S16_LE",
+        "period_size": 960,
+        "period_count": 4
+      }
+    }
+  ]
+}
+

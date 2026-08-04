@@ -1,0 +1,94 @@
+<mixer>
+  <!-- These are the initial mixer settings -->
+  <!-- playback -->
+  <!-- speaker -->
+  <path name="codec-daudio0-out">
+    <ctl name="LINEOUTL Switch" value="1" />
+    <ctl name="LINEOUTR Switch" value="1" />
+    <ctl name="SPK Switch" value="1" />
+  </path>
+  <path name="codec-daudio0-out-close">
+    <ctl name="LINEOUTL Switch" value="0" />
+    <ctl name="LINEOUTR Switch" value="0" />
+    <ctl name="SPK Switch" value="0" />
+  </path>
+
+  <!-- headphones -->
+  <path name="codec-daudio0-headphones">
+    <ctl name="HPOUT Switch" value="1" />
+  </path>
+  <path name="codec-daudio0-headphones-close">
+    <ctl name="HPOUT Switch" value="0" />
+  </path>
+
+
+  <!-- reset -->
+  <path name="out-reset">
+    <ctl name="HP Gain" value="7" />
+    <ctl name="LINEOUTL Switch" value="0" />
+    <ctl name="LINEOUTR Switch" value="0" />
+    <ctl name="HPOUT Switch" value="0" />
+    <ctl name="SPK Switch" value="0" />
+  </path>
+  <path name="in-reset">
+    <ctl name="MIC1 Switch" value="0" />
+    <ctl name="MIC2 Switch" value="0" />
+    <ctl name="MIC3 Switch" value="0" />
+    <ctl name="MIC4 Switch" value="0" />
+    <ctl name="rx sync mode" value="Off" />
+    <ctl name="ADC1 Gain" value="25" />
+    <ctl name="ADC2 Gain" value="25" />
+    <ctl name="ADC3 Gain" value="25" />
+    <ctl name="ADC2 PAG MUX" value="MIC2" />
+  </path>
+
+
+  <!-- capture -->
+  <!-- main_mic -->
+  <path name="codec-daudio0-input">
+    <ctl name="MIC1 Switch" value="1" />
+    <ctl name="MIC2 Switch" value="1" />
+  </path>
+  <path name="codec-daudio0-input-close">
+    <ctl name="MIC1 Switch" value="0" />
+    <ctl name="MIC2 Switch" value="0" />
+  </path>
+
+  <!-- headset_mic -->
+  <path name="codec-daudio0-headset-mic">
+    <ctl name="MIC4 Switch" value="1" />
+    <ctl name="ADC2 PAG MUX" value="MIC4" />
+  </path>
+  <path name="codec-daudio0-headset-mic-close">
+    <ctl name="MIC4 Switch" value="0" />
+    <ctl name="ADC2 PAG MUX" value="MIC2" />
+  </path>
+
+
+  <!-- telephony -->
+  <!-- telephony tx source -->
+  <path name="telephony_tx_src">
+    <ctl name="MIC1 Switch" value="1" />
+    <ctl name="MIC3 Switch" value="1" />
+    <ctl name="ADC3 Gain" value="3" />
+  </path>
+  <path name="telephony_tx_src-close">
+    <ctl name="MIC1 Switch" value="0" />
+    <ctl name="MIC3 Switch" value="0" />
+  </path>
+
+  <!-- telephony tx sink -->
+  <path name="telephony_tx_sink">
+    <ctl name="LINEOUTL Switch" value="1" />
+    <ctl name="LINEOUTR Switch" value="1" />
+    <ctl name="SPK Switch" value="1" />
+  </path>
+  <path name="telephony_tx_sink-close">
+    <ctl name="LINEOUTL Switch" value="0" />
+    <ctl name="LINEOUTR Switch" value="0" />
+    <ctl name="SPK Switch" value="0" />
+  </path>
+
+  <path name="null">
+  </path>
+</mixer>

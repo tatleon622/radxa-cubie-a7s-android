@@ -1,0 +1,10 @@
+<CameraCfgLists>
+    <CameraCfg cameraId="100" device_type="HDMIIN"
+	devicePath="/sys/module/rk628f/parameters/dev_info"
+        ueventPath="DEVPATH=/devices/platform/soc@3000000/2512000.twi/i2c-2/2-0050"
+    />
+    <CameraCfg cameraId="100" device_type="DPIN"
+	devicePath="/sys/module/lt7911d_mipi/parameters/dev_info"
+        ueventPath="DEVPATH=/devices/platform/soc@3000000/2512000.twi/i2c-2/2-002b"
+    />
+</CameraCfgLists>
