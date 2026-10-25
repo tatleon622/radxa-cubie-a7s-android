@@ -1,0 +1,60 @@
+name: Build Cubie A7S Android Firmware
+
+on:
+  workflow_dispatch:
+    inputs:
+      ram_size:
+        description: 'Выберите объем ОЗУ вашей платы'
+        required: true
+        default: '8GB'
+        type: choice
+        options:
+          - '4GB / 8GB'
+          - '6GB'
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Free Disk Space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc
+          sudo apt clean
+
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y build-essential libelf-dev libssl-dev bc flex bison \
+            dwarves git-lfs libncurses5 gawk lib32z1 python3 device-tree-compiler
+
+      - name: Configure RAM in Device Tree
+        run: |
+          DTS_FILE="longan/device/config/chips/a733/configs/radxa_a7s/linux-5.15/board.dts"
+          if [ "${{ inputs.ram_size }}" = "6GB" ]; then
+            echo "Configuring for 6GB RAM..."
+            sed -i 's/\/\* #define CONFIG_DRAM_6GB \*\//#define CONFIG_DRAM_6GB/' $DTS_FILE || true
+          else
+            echo "Configuring for 4GB / 8GB RAM..."
+          fi
+
+      - name: Build Longan Bootloader and Kernel
+        run: |
+          cd longan
+          # Запуск сборки с профилем radxa_a7s под A733
+          ./build.sh -p sun60iw2p1 -b radxa_a7s -k linux-5.15
+
+      - name: Prepare Output Package
+        run: |
+          mkdir -p output
+          # Собираем полученный boot0, u-boot и dtb
+          cp -r longan/out/* output/ || true
+          cd output && zip -r ../cubie-a7s-boot-files.zip .
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cubie-A7S-Firmware-${{ github.run_number }}
+          path: cubie-a7s-boot-files.zip
