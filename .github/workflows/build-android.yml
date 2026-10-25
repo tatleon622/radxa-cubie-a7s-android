@@ -1,12 +1,12 @@
-name: Build Cubie A7S Android Firmware
+name: Build Cubie A7S Boot & DTB
 
 on:
   workflow_dispatch:
     inputs:
       ram_size:
-        description: 'Выберите объем ОЗУ вашей платы'
+        description: 'Объем ОЗУ вашей платы'
         required: true
-        default: '8GB'
+        default: '4GB / 8GB'
         type: choice
         options:
           - '4GB / 8GB'
@@ -19,42 +19,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Free Disk Space
+      - name: Install Device Tree Compiler
         run: |
-          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc
-          sudo apt clean
+          sudo apt-get update
+          sudo apt-get install -y device-tree-compiler gcc cpp zip
 
-      - name: Install Dependencies
-        run: |
-          sudo apt update
-          sudo apt install -y build-essential libelf-dev libssl-dev bc flex bison \
-            dwarves git-lfs libncurses5 gawk lib32z1 python3 device-tree-compiler
-
-      - name: Configure RAM in Device Tree
-        run: |
-          DTS_FILE="longan/device/config/chips/a733/configs/radxa_a7s/linux-5.15/board.dts"
-          if [ "${{ inputs.ram_size }}" = "6GB" ]; then
-            echo "Configuring for 6GB RAM..."
-            sed -i 's/\/\* #define CONFIG_DRAM_6GB \*\//#define CONFIG_DRAM_6GB/' $DTS_FILE || true
-          else
-            echo "Configuring for 4GB / 8GB RAM..."
-          fi
-
-      - name: Build Longan Bootloader and Kernel
-        run: |
-          cd longan
-          # Запуск сборки с профилем radxa_a7s под A733
-          ./build.sh -p sun60iw2p1 -b radxa_a7s -k linux-5.15
-
-      - name: Prepare Output Package
+      - name: Compile August DTB and Collect Boot Binaries
         run: |
           mkdir -p output
-          # Собираем полученный boot0, u-boot и dtb
-          cp -r longan/out/* output/ || true
-          cd output && zip -r ../cubie-a7s-boot-files.zip .
+          
+          # Копируем свежие бинарники загрузчика из репозитория автора
+          find . -name "*.fex" -exec cp {} output/ \; || true
+          find . -name "*.bin" -exec cp {} output/ \; || true
+          
+          # Путь к августовскому DTS файлу платы
+          DTS_DIR="longan/device/config/chips/a733/configs/radxa_a7s"
+          find "$DTS_DIR" - type f
+          
+          # Сохраняем все конфиги и бинарники из репозитория в архив
+          zip -r cubie-a7s-august-files.zip longan/ device/ output/
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Cubie-A7S-Firmware-${{ github.run_number }}
-          path: cubie-a7s-boot-files.zip
+          name: Cubie-A7S-August-Files
+          path: cubie-a7s-august-files.zip
